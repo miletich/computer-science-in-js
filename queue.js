@@ -24,7 +24,7 @@ function queue(){
   }
 
   function clear(){
-    items = [];
+    items.length = 0;
     return true;
   }
 
