@@ -24,7 +24,31 @@ function linkedList(){
     }
   }
 
-  function insert(position, value){}
+  function insert(position, value){
+    if (position >= 0 && position <= size()) {
+      const newNode = node(value);
+      let current = head,
+        previous,
+        index = 0;
+
+      if (position === 0) {
+        head = newNode;
+        head.next = current;
+      } else {
+        while (index++ < position) {
+          previous = current;
+          current = current.next;
+        }
+        previous.next = newNode;
+        newNode.next = current;
+      }
+
+      return true;
+
+    } else {
+      return false;
+    }
+  }
 
   function removeAt(position){}
 
