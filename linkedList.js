@@ -50,7 +50,30 @@ function linkedList(){
     }
   }
 
-  function removeAt(position){}
+  function removeAt(position){
+    if (position >= 0 && position <= size()) {
+
+      if (position === 0) {
+        head = head.next;
+        return true;
+      } else {
+        let current = head,
+            previous,
+            index = 0;
+
+        while (index < position) {
+          index++;
+          previous = current;
+          current = current.next;
+        }
+        previous.next = current.next;
+        return true;
+      }
+
+    } else {
+      return false;
+    }
+  }
 
   function remove(value){}
 
