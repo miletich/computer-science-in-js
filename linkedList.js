@@ -16,7 +16,7 @@ function linkedList(){
     } else {
       let current = head;
 
-      while (current.nex) {
+      while (current.next) {
         current = current.next;
       }
 
