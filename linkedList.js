@@ -75,7 +75,9 @@ function linkedList(){
     }
   }
 
-  function remove(value){}
+  function remove(value){
+    return removeAt(indexOf(value));
+  }
 
   function getHead(){
     return head;
@@ -106,7 +108,12 @@ function linkedList(){
     return true;
   }
 
-  function toString(){}
+  function toString(){
+    return function makeString(current = head, str = ''){
+      return current === null
+        ? str
+        : makeString(current.next, str + current.value + "\n");
+    }();
 }
 
 export default linkedList;
