@@ -8,7 +8,21 @@ function linkedList(){
     return { value, next };
   }
 
-  function append(value){}
+  function append(value){
+    const newNode = node(value);
+
+    if (head === null) {
+      head = newNode;
+    } else {
+      let current = head;
+
+      while (current.nex) {
+        current = current.next;
+      }
+
+      current.next = newNode;
+    }
+  }
 
   function insert(position, value){}
 
