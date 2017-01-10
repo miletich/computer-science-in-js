@@ -54,7 +54,9 @@ function linkedList(){
 
   function remove(value){}
 
-  function getHead(){}
+  function getHead(){
+    return head;
+  }
 
   function indexOf(value){
     return function position(current = head, count = 0){
@@ -72,9 +74,14 @@ function linkedList(){
       : size(current.next, ++count);
   }
 
-  function isEmpty(){}
+  function isEmpty(){
+    return size() === 0;
+  }
 
-  function clear(){}
+  function clear(){
+    head = null;
+    return true;
+  }
 
   function toString(){}
 }
