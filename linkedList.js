@@ -56,7 +56,15 @@ function linkedList(){
 
   function getHead(){}
 
-  function indexOf(){}
+  function indexOf(value){
+    return function position(current = head, count = 0){
+      return current === null
+        ? null
+        : value === current.value
+          ? count
+          : position(current.next, ++count);
+    }();
+  }
 
   function size(current = head, count = 0){
     return current === null
