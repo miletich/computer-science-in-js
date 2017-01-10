@@ -34,7 +34,11 @@ function linkedList(){
 
   function indexOf(){}
 
-  function size()
+  function size(current = head, count = 0){
+    return current === null
+      ? count
+      : size(current.next, ++count);
+  }
 
   function isEmpty(){}
 
