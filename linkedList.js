@@ -93,10 +93,12 @@ function linkedList(){
     }();
   }
 
-  function size(current = head, count = 0){
-    return current === null
-      ? count
-      : size(current.next, ++count);
+  function size(){
+    return function length(current = head, count = 0){
+      return current === null
+        ? count
+        : length(current.next, ++count);
+    }();
   }
 
   function isEmpty(){
