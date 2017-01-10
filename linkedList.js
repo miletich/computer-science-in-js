@@ -58,8 +58,8 @@ function linkedList(){
         return true;
       } else {
         let current = head,
-            previous,
-            index = 0;
+          previous,
+          index = 0;
 
         while (index < position) {
           index++;
@@ -111,11 +111,12 @@ function linkedList(){
   }
 
   function toString(){
-    return function makeString(current = head, str = ''){
+    return function makeString(current = head, str = ""){
       return current === null
         ? str
         : makeString(current.next, str + current.value + "\n");
     }();
+  }
 
   return { append, insert, removeAt, remove, getHead, indexOf, size, isEmpty, clear, toString };
 }

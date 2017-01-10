@@ -35,4 +35,4 @@ function queue(){
   return { enqueue, dequeue, front, size, isEmpty, clear, toString };
 }
 
-default export queue;
+export default queue;
