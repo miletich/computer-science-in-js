@@ -114,6 +114,8 @@ function linkedList(){
         ? str
         : makeString(current.next, str + current.value + "\n");
     }();
+
+  return { append, insert, removeAt, remove, getHead, indexOf, size, isEmpty, clear, toString };
 }
 
 export default linkedList;
