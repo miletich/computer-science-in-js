@@ -1,6 +1,6 @@
 "use strict";
 
-function linkedList(){
+function doublyLinkedList(){
   let head = null,
     tail = null;
 
@@ -142,4 +142,4 @@ function linkedList(){
   return { append, insert, removeAt, remove, getHead, getTail, indexOf, size, isEmpty, clear, toString };
 }
 
-export default linkedList;
+export default doublyLinkedList;
