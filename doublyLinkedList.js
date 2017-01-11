@@ -68,15 +68,25 @@ function doublyLinkedList(){
   }
 
   function removeAt(position){
-    if (position >= 0 && position <= size()) {
+    if (position >= 0 && position < size()) {
+      let current = head,
+        previous,
+        index = 0;
 
       if (position === 0) {
-        head = head.next;
-        return true;
+        if (size() === 1) {
+          head = null;
+          tail = null;
+        } else {
+          head = head.next;
+          head.previous = null;
+        }
+      } else if (position === size() -1) {
+        current = tail;
+        tail = current.previous;
+        tail.next = null;
+
       } else {
-        let current = head,
-          previous,
-          index = 0;
 
         while (index < position) {
           index++;
@@ -84,11 +94,13 @@ function doublyLinkedList(){
           current = current.next;
         }
         previous.next = current.next;
-        return true;
+        current.next.previous = previous;
       }
 
+      return current.value;
+
     } else {
-      return false;
+      return null;
     }
   }
 
