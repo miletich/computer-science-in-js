@@ -140,6 +140,7 @@ function doublyLinkedList(){
 
   function clear(){
     head = null;
+    tail = null;
     return true;
   }
 
