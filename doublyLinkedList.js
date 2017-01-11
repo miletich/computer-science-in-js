@@ -82,6 +82,10 @@ function linkedList(){
     return head;
   }
 
+  function getTail(){
+    return tail;
+  }
+
   function indexOf(value){
     return function position(current = head, count = 0){
       return current === null
@@ -117,7 +121,7 @@ function linkedList(){
     }();
   }
 
-  return { append, insert, removeAt, remove, getHead, indexOf, size, isEmpty, clear, toString };
+  return { append, insert, removeAt, remove, getHead, getTail, indexOf, size, isEmpty, clear, toString };
 }
 
 export default linkedList;
