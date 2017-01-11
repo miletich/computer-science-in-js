@@ -51,15 +51,14 @@ function linkedList(){
   }
 
   function removeAt(position){
-    if (position >= 0 && position <= size()) {
+    if (position >= 0 && position < size()) {
+      let current = head,
+        previous,
+        index = 0;
 
       if (position === 0) {
         head = head.next;
-        return true;
       } else {
-        let current = head,
-          previous,
-          index = 0;
 
         while (index < position) {
           index++;
@@ -67,9 +66,9 @@ function linkedList(){
           current = current.next;
         }
         previous.next = current.next;
-        return true;
       }
-
+      return true;
+      
     } else {
       return false;
     }
