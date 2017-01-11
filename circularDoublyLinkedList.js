@@ -29,7 +29,7 @@ function circularDoublyLinkedList(){
   }
 
   function insert(position, value){
-    if (position >= 0 && position < size()) {
+    if (position >= 0 && position <= size()) {
       const newNode = node(value);
       let current = head,
         previous,
@@ -38,20 +38,25 @@ function circularDoublyLinkedList(){
       if (position === 0) {
 
         if (head === null) {
+          newNode.next = newNode;
+          newNode.previous = newNode;
           head = newNode;
           tail = newNode;
         } else {
+          newNode.next = head;
+          newNode.previous = tail;
+          head.previous = newNode;
           head = newNode;
-          current.previous = newNode;
-          head.next = current;
+          tail.next = newNode;
         }
 
-      } else if (position === size() -1) {
+      } else if (position === size()) {
 
-        current = tail;
-        current.next = newNode;
+        tail.next = newNode;
+        newNode.previous = tail;
+        newNode.next = head;
         tail = newNode;
-        tail.previous = current;
+        head.previous = tail;
 
       } else {
 
