@@ -14,13 +14,18 @@ function circularDoublyLinkedList(){
     const newNode = node(value);
 
     if (head === null) {
+      newNode.next = newNode;
+      newNode.previous = newNode;
       head = newNode;
       tail = newNode;
     } else {
       tail.next = newNode;
+      head.previous = newNode;
       newNode.previous = tail;
+      newNode.next = head;
       tail = newNode;
     }
+    return true;
   }
 
   function insert(position, value){
@@ -118,7 +123,7 @@ function circularDoublyLinkedList(){
 
   function indexOf(value){
     return function position(current = head, count = 0){
-      return current === null
+      return (current === head && count)
         ? null
         : value === current.value
           ? count
@@ -128,7 +133,7 @@ function circularDoublyLinkedList(){
 
   function size(){
     return function length(current = head, count = 0){
-      return current === null
+      return (current === head && count)
         ? count
         : length(current.next, ++count);
     }();
@@ -146,7 +151,7 @@ function circularDoublyLinkedList(){
 
   function toString(){
     return function makeString(current = head, str = ""){
-      return current === null
+      return (current === head && str)
         ? str
         : makeString(current.next, str + current.value + "\n");
     }();
