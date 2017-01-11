@@ -24,22 +24,40 @@ function linkedList(){
   }
 
   function insert(position, value){
-    if (position >= 0 && position <= size()) {
+    if (position >= 0 && position < size()) {
       const newNode = node(value);
       let current = head,
         previous,
         index = 0;
 
       if (position === 0) {
-        head = newNode;
-        head.next = current;
+
+        if (head === null) {
+          head = newNode;
+          tail = newNode;
+        } else {
+          head = newNode;
+          current.previous = newNode;
+          head.next = current;
+        }
+
+      } else if (position === size() -1) {
+
+        current = tail;
+        current.next = newNode;
+        tail = newNode;
+        tail.previous = current;
+
       } else {
+
         while (index++ < position) {
           previous = current;
           current = current.next;
         }
         previous.next = newNode;
+        newNode.previous = previous;
         newNode.next = current;
+        current.previous = newNode;
       }
 
       return true;
