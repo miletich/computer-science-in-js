@@ -89,12 +89,12 @@ function circularDoublyLinkedList(){
           tail = null;
         } else {
           head = head.next;
-          head.previous = null;
+          tail.next = head;
         }
       } else if (position === size() -1) {
         current = tail;
         tail = current.previous;
-        tail.next = null;
+        tail.next = head;
 
       } else {
 
