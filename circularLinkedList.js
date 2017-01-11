@@ -106,7 +106,7 @@ function linkedList(){
 
   function indexOf(value){
     return function position(current = head, count = 0){
-      return current === null
+      return (current === head && count)
         ? null
         : value === current.value
           ? count
@@ -116,7 +116,7 @@ function linkedList(){
 
   function size(){
     return function length(current = head, count = 0){
-      return current === null
+      return (current === head && count)
         ? count
         : length(current.next, ++count);
     }();
@@ -133,7 +133,7 @@ function linkedList(){
 
   function toString(){
     return function makeString(current = head, str = ""){
-      return current === null
+      return (current === head && str)
         ? str
         : makeString(current.next, str + current.value + "\n");
     }();
