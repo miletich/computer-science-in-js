@@ -1,11 +1,13 @@
 "use strict";
 
 function linkedList(){
-  let head = null;
+  let head = null,
+    tail = null;
 
   function node(value){
-    let next = null;
-    return { value, next };
+    let next = null,
+      previous = null;
+    return { value, next, previous };
   }
 
   function append(value){
@@ -13,14 +15,11 @@ function linkedList(){
 
     if (head === null) {
       head = newNode;
+      tail = newNode;
     } else {
-      let current = head;
-
-      while (current.next) {
-        current = current.next;
-      }
-
-      current.next = newNode;
+      tail.next = newNode;
+      newNode.previous = tail;
+      tail = newNode;
     }
   }
 
