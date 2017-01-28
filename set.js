@@ -46,7 +46,66 @@ function set() {
     return Object.keys(items);
   }
 
-  return { has, add, remove, clear, size, values };
+  function union(otherSet) {
+    const unionSet = set();
+    let vals = values();
+
+    for (let i = 0; i < vals.length; i++) {
+      unionSet.add(vals[i]);
+    }
+
+    vals = otherSet.values();
+
+    for (let i = 0; i < vals.length; i++) {
+      unionSet.add(vals[i]);
+    }
+
+    return unionSet;
+  }
+
+  function intersection(otherSet) {
+    const intersectionSet = set();
+    const vals = values();
+
+    for (let i = 0; i < vals.length; i++) {
+      if (otherSet.has(vals[i])) {
+        intersectionSet.add(vals[i]);
+      }
+    }
+
+    return intersectionSet;
+  }
+
+  function difference(otherSet) {
+    const differenceSet = set();
+    const vals = values();
+
+    for (let i = 0; i < vals.length; i++) {
+      if (!otherSet.has(vals[i])) {
+        differenceSet.add(vals[i]);
+      }
+    }
+
+    return differenceSet;
+  }
+
+  function subset(otherSet) {
+    if (size() > otherSet.size()) {
+      return false;
+    }
+
+    const vals = values();
+
+    for (let i = 0; i < values.length; i++) {
+      if (!otherSet.has(vals[i])) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  return { has, add, remove, clear, size, values, union, intersection, difference, subset };
 }
 
 export default set;
