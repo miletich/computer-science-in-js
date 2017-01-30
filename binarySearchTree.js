@@ -42,11 +42,29 @@ function binarySearchTree() {
 
   function remove(key) {}
 
-  function inOrderTraverse() {}
+  function inOrderTraverse(callback, node = root) {
+    if (node !== null) {
+      inOrderTraverse(callback, node.left);
+      callback(node);
+      inOrderTraverse(callback, node.right);
+    }
+  }
 
-  function preOrderTraverse() {}
+  function preOrderTraverse(callback, node = root) {
+    if (node !== null) {
+      callback(node);
+      preOrderTraverse(callback, node.left);
+      preOrderTraverse(callback, node.right);
+    }
+  }
 
-  function postOrderTraverse() {}
+  function postOrderTraverse(callback, node = root) {
+    if (node !== null) {
+      postOrderTraverse(callback, node.left);
+      postOrderTraverse(callback, node.right);
+      callback(node);
+    }
+  }
 
   function min() {}
 
