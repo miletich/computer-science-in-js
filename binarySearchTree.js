@@ -66,11 +66,32 @@ function binarySearchTree() {
     }
   }
 
-  function min() {}
+  function min(node = root) {
+    return node.left !== null
+      ? min(node.left)
+      : node.key;
+  }
 
-  function max() {}
+  function max(node = root) {
+    return node.right !== null
+      ? max(node.right)
+      : node.key;
+  }
 
-  return { insert, remove, inOrderTraverse, preOrderTraverse, postOrderTraverse, min, max };
+  function search(value, node = root){
+    if (node !== null) {
+      if (node.key === value) {
+        return true;
+      } else if (node.key > value) {
+        return search(value, node.left);
+      } else if (node.key < value) {
+        return search(value, node.right);
+      }
+    }
+    return false;
+  }
+
+  return { insert, remove, inOrderTraverse, preOrderTraverse, postOrderTraverse, min, max, search };
 }
 
 export default binarySearchTree;
