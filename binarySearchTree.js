@@ -40,7 +40,50 @@ function binarySearchTree() {
     }
   }
 
-  function remove(key) {}
+  function remove(key) {
+    root = removeNode(key);
+
+    function removeNode(key, node = root) {
+      if (node === null) {
+        return null;
+      }
+
+      if (node.key > key) {
+        node.left = removeNode(key, node.left);
+        return node;
+      } else if (node.key < key) {
+        node.right = removeNode(key, node.right);
+        return node;
+      } else { //node.key === key
+          // If leaf node
+          if (node.left === null && node.right === null) {
+            node = null;
+            return node;
+          }
+
+          // If node with only one child
+          if (node.left == null) {
+            node = node.right;
+            return node;
+          } else if (node.right === null) {
+            node = node.left;
+            return node;
+          }
+
+          // If node with both children
+          let aux = findMinNode(node.right);
+          node.key = aux.key;
+          removeNode(aux.key, node.right);
+          return node;
+      }
+    }
+
+    function findMinNode(node) {
+      return node.left !== null
+        ? findMinNode(node.left)
+        : node;
+    }
+  }
 
   function inOrderTraverse(callback, node = root) {
     if (node !== null) {
