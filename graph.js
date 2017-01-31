@@ -1,6 +1,7 @@
 "use strict";
 import dictionary from "./dictionary";
 import queue from "./queue";
+import stack from "./stack";
 
 function graph() {
   const vertices = [];
@@ -68,7 +69,70 @@ function graph() {
     }
   }
 
-  return { addVertex, addEdge, toString, bfs };
+  function shortestPath(v = vertices[0]) {
+    // Calculate distances and predecessors from 'v' to every other vertext
+    const status = initialise().status;
+    const predecessors = initialise().predecessors;
+    const distance = initialise().distance;
+    const q = queue();
+
+    q.enqueue(v);
+
+    while (!q.isEmpty()) {
+      const u = q.dequeue();
+      const neighbours = adjList.get(u);
+      status[u] = "discovered";
+
+      for (let i = 0; i < neighbours.length; i++) {
+        const w = neighbours[i];
+
+        if (status[w] === "unvisited") {
+          status[w] = "discovered";
+          predecessors[w] = u;
+          distance[w] = distance[u] + 1;
+          q.enqueue(w);
+        }
+      }
+
+      status[u] = "explored";
+    }
+
+    // Display paths from vertex 'v' to every other vertex in the graph
+    const fromVertex = v;
+    let s = "";
+
+    for (let i = 0; i < vertices.length; i++) {
+      const toVertex = vertices[i];
+      const path = stack();
+
+      for (let v = toVertex; v !== fromVertex; v = predecessors[v]) {
+        path.push(v);
+      }
+      s += fromVertex;
+      while (!path.isEmpty()) {
+        s += " - " + path.pop();
+      }
+      s += "\n";
+    }
+    return s;
+
+    // Helper function
+    function initialise() {
+      const status = {};
+      const predecessors = {};
+      const distance = {};
+
+      for (let i = 0; i < vertices.length; i++) {
+        status[vertices[i]] = "unvisited";
+        predecessors[vertices[i]] = null;
+        distance[vertices[i]] = 0;
+      }
+
+      return { status, predecessors, distance};
+    }
+  }
+
+  return { addVertex, addEdge, toString, bfs, shortestPath };
 }
 
 export default graph;
