@@ -1,5 +1,6 @@
 "use strict";
 import dictionary from "./dictionary";
+import queue from "./queue";
 
 function graph() {
   const vertices = [];
@@ -32,7 +33,42 @@ function graph() {
     return s;
   }
 
-  return { addVertex, addEdge, toString };
+  function bfs(callback, v = vertices[0]) {
+    const q = queue();
+    const status = initialiseStatus();
+    q.enqueue(v);
+
+    while (!q.isEmpty()) {
+      const u = q.dequeue(u);
+      status[u] = "discovered";
+      const neighbours = adjList.get(u);
+
+      for (let i = 0; i < neighbours.length; i++) {
+        const w = neighbours[i];
+        if (status[w] === "unvisited") {
+          status[w] = "explored";
+          q.enqueue(w);
+        }
+      }
+
+      status[u] = "explored";
+      if (callback) {
+        callback(u);
+      }
+    }
+
+    function initialiseStatus() {
+      const status = {};
+
+      for (let i = 0; i < vertices.length; i++) {
+        status[vertices[i]] = "unvisited";
+      }
+
+      return status;
+    }
+  }
+
+  return { addVertex, addEdge, toString, bfs };
 }
 
 export default graph;
