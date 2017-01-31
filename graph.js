@@ -58,6 +58,7 @@ function graph() {
       }
     }
 
+    // Helper function
     function initialiseStatus() {
       const status = {};
 
@@ -132,7 +133,45 @@ function graph() {
     }
   }
 
-  return { addVertex, addEdge, toString, bfs, shortestPath };
+  function dfs(callback) {
+    const status = initialiseStatus();
+    for (let i = 0; i < vertices.length; i++) {
+      if (status[vertices[i]] === "unvisited") {
+        dfsVisit(vertices[i], status, callback);
+      }
+    }
+
+    // Actually visits vertices
+    function dfsVisit(u, status, callback) {
+      status[u] = "discovered";
+      if (callback) {
+        callback(u);
+      }
+
+      const neighbours = adjList.get(u);
+      for (let i = 0; i < neighbours.length; i++) {
+        const w = neighbours[i];
+        if (status[w] === "unvisited") {
+          dfsVisit(w, status, callback);
+        }
+      }
+
+      status[u] = "explored";
+    }
+
+    // Helper function
+    function initialiseStatus() {
+      const status = {};
+
+      for (let i = 0; i < vertices.length; i++) {
+        status[vertices[i]] = "unvisited";
+      }
+
+      return status;
+    }
+  }
+
+  return { addVertex, addEdge, toString, bfs, shortestPath, dfs };
 }
 
 export default graph;
