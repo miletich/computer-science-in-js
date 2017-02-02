@@ -40,14 +40,14 @@ function graph() {
     q.enqueue(v);
 
     while (!q.isEmpty()) {
-      const u = q.dequeue(u);
+      const u = q.dequeue();
       status[u] = "discovered";
       const neighbours = adjList.get(u);
 
       for (let i = 0; i < neighbours.length; i++) {
         const w = neighbours[i];
         if (status[w] === "unvisited") {
-          status[w] = "explored";
+          status[w] = "discovered";
           q.enqueue(w);
         }
       }
