@@ -163,7 +163,6 @@ function graph() {
       status[u] = "explored";
     }
 
-
     // Helper function
     function initialiseStatus() {
       const status = {};
@@ -176,7 +175,84 @@ function graph() {
     }
   }
 
-  return { addVertex, addEdge, toString, bfs, shortestPath, dfs };
+  function toposort() {
+    const result = dfsExplore().finishTime;
+    const order = [];
+    for (let v in result) {
+      order.push({
+        key: v,
+        result: result[v]
+      });
+    }
+    order.sort((a, b) => b.result - a.result);
+
+    let s = "";
+    for (let i = 0; i < order.length; i++) {
+      s += order[i].key;
+      if (i < order.length - 1) {
+        s += " - ";
+      }
+    }
+
+    return s;
+
+    // Calculates discovery and finish times of vertices and tracks their predecessors
+    function dfsExplore() {
+      const status = initialise().status;
+      const predecessors = initialise().predecessors;
+      const discoveryTime = initialise().discoveryTime;
+      const finishTime = initialise().finishTime;
+      let time = 0;
+
+      for (let i = 0; i < vertices.length; i++) {
+        if (status[vertices[i]] === "unvisited") {
+          dfsVisit(vertices[i], status, discoveryTime, finishTime, predecessors);
+        }
+      }
+
+      return { discoveryTime, finishTime, predecessors };
+
+      // Visits vertices
+      function dfsVisit(u, status, discoveryTime, finishTime, predecessors) {
+        status[u] = "discovered";
+        discoveryTime[u] = ++time;
+        const neighbours = adjList.get(u);
+
+        for (let i = 0; i < neighbours.length; i++) {
+          const w = neighbours[i];
+
+          if (status[w] === "unvisited") {
+            predecessors[w] = u;
+            dfsVisit(w, status, discoveryTime, finishTime, predecessors);
+          }
+        }
+
+        finishTime[u] = ++time;
+        status[u] = "explored";
+      }
+
+      // Helper function
+      function initialise() {
+        const status = {};
+        const predecessors = {};
+        const discoveryTime = {};
+        const finishTime = {};
+
+        for (let i = 0; i < vertices.length; i++) {
+          const v = vertices[i];
+          status[v] = "unvisited";
+          predecessors[v] = null;
+          discoveryTime[v] = 0;
+          finishTime[v] = 0;
+        }
+
+        return { status, predecessors, discoveryTime, finishTime };
+      }
+    }
+
+  }
+
+  return { addVertex, addEdge, toString, bfs, shortestPath, dfs, toposort };
 }
 
 export default graph;
