@@ -1,10 +1,10 @@
-#Computer Science in JavaScript
+# Computer Science in JavaScript
 
-##Data Structures
+## Data Structures
 
 This directory contains data structures implemented in JavaScript using "functional inheritance" (just for kicks). The [index.js](./data-structures/index.js) file contains a simple use case to demonstrate how these data structures can be employed.
 
-###Sequential Data Structures
+### Sequential Data Structures
  + Linked lists  
   + [Singly linked list](./data-structures/linkedList.js)
   + [Circular singly linked list](./data-structures/circularLinkedList.js)
@@ -14,7 +14,7 @@ This directory contains data structures implemented in JavaScript using "functio
  + [Queue](./data-structures/queue.js)  
   + [Priority Queue](./data-structures/priorityQueue.jsdata-structures/)
 
-###Non-sequential Data Structures:
+### Non-sequential Data Structures:
  + [Set](./data-structures/set.js)
  + [Dictionary/Map](./data-structures/dictionary.js)
  + [Hash table](./data-structures/hashTable.js)  
@@ -25,7 +25,7 @@ This directory contains data structures implemented in JavaScript using "functio
   + [Directed Grah](./data-structures/directedGraph.js)
   + [Binary Search Tree](./data-structures/binarySearchTree.js)
 
-##Algorithms
+## Algorithms
 
-###Search Algorithms
+### Search Algorithms
  + [Bubble Sort](.algorithms/bubbleSort.js)
