@@ -6,13 +6,13 @@ This directory contains data structures implemented in JavaScript using "functio
 
 ### Sequential Data Structures
  + Linked lists  
-  + [Singly linked list](./data-structures/linkedList.js)
-  + [Circular singly linked list](./data-structures/circularLinkedList.js)
-  + [Doubly linked list](./data-structures/doublyLinkedList.js)
-  + [Circular doubly linked list](./circularDoublyLinkedList.js)  
+   + [Singly linked list](./data-structures/linkedList.js)
+   + [Circular singly linked list](./data-structures/circularLinkedList.js)
+   + [Doubly linked list](./data-structures/doublyLinkedList.js)
+   + [Circular doubly linked list](./circularDoublyLinkedList.js)  
  + [Stack](./data-structures/stack.js)
  + [Queue](./data-structures/queue.js)  
-  + [Priority Queue](./data-structures/priorityQueue.jsdata-structures/)
+   + [Priority Queue](./data-structures/priorityQueue.jsdata-structures/)
 
 ### Non-sequential Data Structures:
  + [Set](./data-structures/set.js)
