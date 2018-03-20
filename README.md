@@ -18,12 +18,12 @@ This directory contains data structures implemented in JavaScript using "functio
  + [Set](./data-structures/set.js)
  + [Dictionary/Map](./data-structures/dictionary.js)
  + [Hash table](./data-structures/hashTable.js)  
-  + [Hash table using separate chaining collision avoidance technique](./data-structures/hashTable_separateChaining.js)
+   + [Hash table using separate chaining collision avoidance technique](./data-structures/hashTable_separateChaining.js)
   + [Hash table using linear probing collision avoidance technique](./data-structures/hashTable_linearProbing.js)
  + Graphs  
-  + [Undirected graph](./data-structures/graph.js)
-  + [Directed Grah](./data-structures/directedGraph.js)
-  + [Binary Search Tree](./data-structures/binarySearchTree.js)
+   + [Undirected graph](./data-structures/graph.js)
+   + [Directed Grah](./data-structures/directedGraph.js)
+   + [Binary Search Tree](./data-structures/binarySearchTree.js)
 
 ## Algorithms
 
